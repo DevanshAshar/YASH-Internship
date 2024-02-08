@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Data Table</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for names...">
+        <button onclick="searchFunction()">Search</button>
+    </div>
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>   
+    <button onclick="sortSal()">Sort by salary</button>
+    <div id="chart"></div>
+
+<script>
+    async function fetchEmployeeDetails() {
+        try {
+            const response = await fetch('data.json');
+            const data = await response.json();
+            const tableBody = document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
+            data.forEach(employee => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).innerHTML = employee.id;
+                row.insertCell(1).innerHTML = employee.name;
+                row.insertCell(2).innerHTML = employee.department;
+                row.insertCell(3).innerHTML = employee.salary;
+            });
+            createChart(data);
+        } catch (error) {
+            console.error('Error fetching employee data:', error);
+        }
+    }
+
+    function searchFunction() {
+        const input = document.getElementById("searchInput").value.toUpperCase();
+        const table = document.getElementById("employeeTable");
+        const rows = table.getElementsByTagName("tr");
+
+        for (let row of rows) {
+            const cells = row.getElementsByTagName("td")[1]; 
+            if (cells) {
+                const txtValue = cells.textContent || cells.innerText;
+                row.style.display = txtValue.toUpperCase().includes(input) ? "" : "none";
+            }
+        }
+    }
+
+    let isSortedBySalary = false;
+    let isSortedById = true;
+
+    function sortSal() {
+        const table = document.getElementById("employeeTable");
+        const rows = Array.from(table.getElementsByTagName("tr")).slice(1);
+        const salaryIndex = 3;
+        const idIndex = 0;
+
+        if (!isSortedBySalary) {
+            rows.sort((a, b) => {
+                const salaryA = parseInt(a.getElementsByTagName("td")[salaryIndex].innerText);
+                const salaryB = parseInt(b.getElementsByTagName("td")[salaryIndex].innerText);
+                return salaryB - salaryA;
+            });
+            isSortedBySalary = true;
+        } else if (isSortedBySalary) {
+            rows.sort((a, b) => {
+                const idA = parseInt(a.getElementsByTagName("td")[idIndex].innerText);
+                const idB = parseInt(b.getElementsByTagName("td")[idIndex].innerText);
+                return idA - idB;
+            });
+            isSortedBySalary = false;
+            isSortedById = true;
+        } 
+        rows.forEach(row => table.appendChild(row));
+    }
+    function createChart(data) {
+        const salaries = data.map(employee => employee.salary);
+        const names = data.map(employee => employee.name);
+
+        const chartData = [{
+            x: names,
+            y: salaries,
+            type: 'bar'
+        }];
+
+        const layout = {
+            title: 'Employee Salary Distribution',
+            xaxis: { title: 'Employee Name' },
+            yaxis: { title: 'Salary' }
+        };
+
+        Plotly.newPlot('chart', chartData, layout);
+    }
+
+    fetchEmployeeDetails();
+</script>
+</body>
+</html>
