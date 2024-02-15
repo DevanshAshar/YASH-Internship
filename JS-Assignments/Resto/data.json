@@ -1,0 +1,51 @@
+[
+      {
+        "name": "Buttermilk Pancakes",
+        "price": 15.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "breakfast",
+        "img": "https://source.unsplash.com/600x400/?pancakes"
+      },
+      {
+        "name": "Classic Omelette",
+        "price": 9.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "breakfast",
+        "img": "https://source.unsplash.com/600x400/?omelette"
+      },
+      {
+        "name": "Avocado Toast",
+        "price": 12.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "breakfast",
+        "img": "https://source.unsplash.com/600x400/?avocado"
+      },
+      {
+        "name": "Godzilla Milkshake",
+        "price": 6.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "shakes",
+        "img": "https://source.unsplash.com/600x400/?milkshake"
+      },
+      {
+        "name": "Strawberry Smoothie",
+        "price": 7.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "shakes",
+        "img": "https://source.unsplash.com/600x400/?smoothie"
+      },
+      {
+        "name": "Country Delight",
+        "price": 20.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "lunch",
+        "img": "https://source.unsplash.com/600x400/?lunch"
+      },
+      {
+        "name": "Grilled Salmon",
+        "price": 24.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu elit ligula.",
+        "category": "dinner",
+        "img": "https://source.unsplash.com/600x400/?salmon"
+      }
+    ]

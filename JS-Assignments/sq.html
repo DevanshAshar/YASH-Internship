@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Square Animation</title>
+   <style>
+    #container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color:blue;
+}
+.small-square{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: darkgreen;
+}
+   </style>
+</head>
+<body>
+  <div id="container">
+    <div class="small-square" id="square1"></div>
+    <div class="small-square" id="square2"></div>
+  </div>
+  <button id="start">Start Animation</button>
+  <button id="stop">Stop Animation</button>
+  <script> 
+  document.querySelector("#start").addEventListener("click",startAnimation);
+document.querySelector("#stop").addEventListener("click",stopAnimation)
+var animationinterval;
+function startAnimation(){
+    animationinterval = setInterval(move,1000);
+}
+function stopAnimation(){
+    clearInterval(animationinterval);
+}
+function move(){
+    var x1 = Math.floor(Math.random()*(document.getElementById("container").clientWidth-document.getElementById("square1").clientWidth))
+    var x2 = Math.floor((Math.random()*document.getElementById("container").clientWidth-document.getElementById("square2").clientWidth))
+    var y1 = Math.floor(Math.random()*(document.getElementById("container").clientHeight-document.getElementById("square1").clientHeight))
+    var y2 = Math.floor((Math.random()*document.getElementById("container").clientHeight-document.getElementById("square2").clientHeight))
+    document.getElementById("square1").style.right = x1+"px";
+    document.getElementById("square2").style.right = x2+"px";
+    document.getElementById("square1").style.top = y1+"px";
+    document.getElementById("square2").style.top = y2+"px";
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>day5</title>
+    <style>
+      /* default style */
+      .div-example {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border: 1px solid #000;
+        float: left;
+      }
+      table {
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 id="heading1">Heading</h1>
+
+    <script>
+      var heading1 = document.getElementById("heading1");
+      heading1.style.textAlign = "center";
+      heading1.style.fontSize = "24px";
+      heading1.style.fontFamily = "Arial, sans-serif";
+    </script>
+    <div class="div-example" id="div1">Div 1</div>
+    <div class="div-example" id="div2">Div 2</div>
+    <div class="div-example" id="div3">Div 3</div>
+    <div class="div-example" id="div4">Div 4</div>
+
+    <script>
+      var divs = document.querySelectorAll("div");
+      divs.forEach((div) => {
+        div.style.backgroundColor = "lightblue";
+      });
+    </script>
+    <p>para 1</p>
+    <p>para 2</p>
+    <p>para 3</p>
+
+    <script>
+      var paragraphs = document.querySelectorAll("p");
+      paragraphs.forEach((paragraph) => {
+        paragraph.style.textShadow = "2px 2px 4px rgba(0,0,0,0.5)";
+      });
+    </script>
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Devansh</td>
+          <td>xyz</td>
+          <td>abc</td>
+        </tr>
+        <tr>
+          <td>Dev</td>
+          <td>abc</td>
+          <td>xyz</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button onclick="addColumn()">Add State Column</button>
+    <select id="columnSelect">
+      <option value="-1">Select Column to Delete</option>
+      <option value="0">Name</option>
+      <option value="1">Address</option>
+      <option value="2">City</option>
+    </select>
+    <button onclick="deleteColumn()">Delete Selected Column</button>
+    <script>
+      function addColumn() {
+        var table = document.getElementById("myTable");
+        var header = table.getElementsByTagName("thead")[0];
+        var row = header.rows[0];
+        var cell = document.createElement("th");
+        cell.innerHTML = "<b>State</b>";
+        row.appendChild(cell);
+        var body = table.getElementsByTagName("tbody")[0];
+        var rows = body.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+          var cell = rows[i].insertCell(-1);
+          cell.innerHTML = "some state";
+        }
+        var select = document.getElementById("columnSelect");
+        var option = document.createElement("option");
+        option.text = "State";
+        option.value = row.cells.length - 1;
+        select.add(option);
+      }
+      function deleteColumn() {
+        var select = document.getElementById("columnSelect");
+        var index = parseInt(select.value);
+        if (index != -1) {
+          var table = document.getElementById("myTable");
+          var rows = table.rows;
+          for (var i = 0; i < rows.length; i++) {
+            rows[i].deleteCell(index);
+          }
+          select.remove(select.selectedIndex);
+          updateSelectValues();
+        }
+      }
+      function updateSelectValues() {
+        var select = document.getElementById("columnSelect");
+        for (var i = 0; i < select.options.length; i++) {
+          select.options[i].value = i - 1;
+        }
+      }
+    </script>
+  </body>
+</html>
