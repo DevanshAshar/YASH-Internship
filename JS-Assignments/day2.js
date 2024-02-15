@@ -1,8 +1,7 @@
 function generateOutput(personInput) {
     let country = personInput.country ? personInput.country.toUpperCase() : '';
-    let belongsToIndia = country === 'INDIA';
     let output = `{{${personInput.name}}} ${personInput.surname} is {{${personInput.age}}} years old and ${
-      belongsToIndia ? 'belongs to India' : 'does not belong to India'
+        (country === 'INDIA' ? 'belongs ' : 'does not belong ')+'to India'
     }`;  
     return output;
 }
@@ -29,6 +28,21 @@ let inputSentence = "My name is Salman";
 let match = inputSentence.match(/\bis\b\s+(\w+)/i);
 let wordAfterIs = match ? match[1] : null;
 console.log(wordAfterIs);
+
+let inputSentence1 = "My name is Salman";
+let match1 = inputSentence1.match(/Salman/i);
+let matchedWord = match1 ? match1[0] : null;
+console.log(matchedWord)
+
+let inputSentence2 = "My age is 20 what is yours?";
+let match2 = inputSentence2.match(/20/);
+let matchedWord1= match2 ? match2[0] : null;
+console.log(matchedWord1)
+
+let inputSentence3 = "my employee id is EN123 I work at Yash";
+let match3 = inputSentence3.match(/EN123/);
+let matchedWord2= match3 ? match3[0] : null;
+console.log(matchedWord2)
 
 let inputString = "Hiy you ari not Robot";
 let replacedString = inputString.replace(/i/g, 'e');

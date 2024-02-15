@@ -25,7 +25,7 @@ let ct=0
 let character='t'
 for (let x in arr) 
 {
-    if (x.charAt(0) === character) 
+    if (arr[x].charAt(0).toLowerCase() === character.toLowerCase()) 
     ct++
 }
 console.log(ct)
