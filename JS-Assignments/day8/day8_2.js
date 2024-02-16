@@ -1,0 +1,15 @@
+var myVariable;
+myVariable = {};
+myVariable = null;
+var obj1 = { name: 'John', age: 30 };
+var obj2 = { gender: 'Male', country: 'USA' };
+var obj3 = { name: 'Alice', age: 25, gender: 'Female', country: 'UK' };
+console.log(obj1);
+console.log(obj2);
+console.log(obj3);
+var partialUser = { name: 'Devansh' };
+var requiredUser = { name: 'Devansh', age: 21, email: 'ashar.devansh@gmail.com' };
+var readonlyUser = { name: 'Dev', age: 20, email: 'dev@gmail.com' };
+console.log(partialUser);
+console.log(requiredUser);
+console.log(readonlyUser);
