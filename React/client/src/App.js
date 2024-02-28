@@ -11,6 +11,10 @@ import Api from './Components/day1/Api';
 import Employee from './Components/day1/Employee';
 import Form from './Components/day1/Form';
 import EmployeeCRUD from './Components/day1/EmployeeCrud';
+import EmployeeForm from './Components/day1/EmployeeForm';
+import EmployeeRedux from './Components/day1/EmployeeRedux';
+import { Provider } from 'react-redux';
+import store from './service/store';
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
       <Employee/>
       <Form/>
       <EmployeeCRUD/>
+      <Provider store={store}>
+      <EmployeeForm/>
+      <EmployeeRedux/>
+      </Provider>
     </div>
   );
 }
